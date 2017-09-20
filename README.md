@@ -110,7 +110,8 @@ If you want to help contribute, here's what you need to know to get it up and ru
 
 **Getting Started**
 
-- Start by running `npm install`.
+- Start by running `npm install --unsafe-perm`.
+- Install gulp by running `apt-get install libnotify-bin`.
 - Run `npm run dev`. Gulp will then watch & compile everything and then watch for changes to the HTML, JS, or CSS.
 - For distribution, run `npm run dist`.
 
