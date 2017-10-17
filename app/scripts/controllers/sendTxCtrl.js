@@ -11,8 +11,8 @@ var sendTxCtrl = function($scope, $sce, walletService) {
     $scope.Validator = Validator;
     $scope.gasLimitChanged = false;
     $scope.tx.readOnly = globalFuncs.urlGet('readOnly') == null ? false : true;
-    var currentTab = $scope.globalService.currentTab;
-    var tabs = $scope.globalService.tabs;
+    //var currentTab = $scope.globalService.currentTab;
+    //var tabs = $scope.globalService.tabs;
     $scope.tokenVisibility = "hidden";
     $scope.tokenTx = {
         to: '',
@@ -202,8 +202,9 @@ var sendTxCtrl = function($scope, $sce, walletService) {
         }
         var txData = uiFuncs.getTxData($scope);
         txData.gasPrice = $scope.tx.gasPrice ? '0x' + new BigNumber($scope.tx.gasPrice).toString(16) : null;
+       // console.log("nonce1:"+$scope.tx.nonce);
         txData.nonce = $scope.tx.nonce ? '0x' + new BigNumber($scope.tx.nonce).toString(16) : null;
-
+        //console.log("nonce2:"+txData.nonce);
         // set to true for offline tab and txstatus tab
         // on sendtx tab, it pulls gas price from the gasprice slider & nonce
         // if its true the whole txData object is set - don't try to change it
@@ -239,10 +240,10 @@ var sendTxCtrl = function($scope, $sce, walletService) {
                 var checkTxLink = "https://www.myetherwallet.com?txHash=" + resp.data + "#check-tx-status";
                 var txHashLink = $scope.ajaxReq.blockExplorerTX.replace("[[txHash]]", resp.data);
                 var emailBody = 'I%20was%20trying%20to..............%0A%0A%0A%0ABut%20I%27m%20confused%20because...............%0A%0A%0A%0A%0A%0ATo%20Address%3A%20https%3A%2F%2Fetherscan.io%2Faddress%2F' + $scope.tx.to + '%0AFrom%20Address%3A%20https%3A%2F%2Fetherscan.io%2Faddress%2F' + $scope.wallet.getAddressString() + '%0ATX%20Hash%3A%20https%3A%2F%2Fetherscan.io%2Ftx%2F' + resp.data + '%0AAmount%3A%20' + $scope.tx.value + '%20' + $scope.unitReadable + '%0ANode%3A%20' + $scope.ajaxReq.type + '%0AToken%20To%20Addr%3A%20' + $scope.tokenTx.to + '%0AToken%20Amount%3A%20' + $scope.tokenTx.value + '%20' + $scope.unitReadable + '%0AData%3A%20' + $scope.tx.data + '%0AGas%20Limit%3A%20' + $scope.tx.gasLimit + '%0AGas%20Price%3A%20' + $scope.tx.gasPrice;
-                var verifyTxBtn = $scope.ajaxReq.type != nodes.nodeTypes.Custom ? '<a class="btn btn-xs btn-info" href="' + txHashLink + '" class="strong" target="_blank" rel="noopener">Verify Transaction</a>' : '';
-                var checkTxBtn = '<a class="btn btn-xs btn-info" href="' + checkTxLink + '" target="_blank" rel="noopener"> Check TX Status </a>';
+                //var verifyTxBtn = $scope.ajaxReq.type != nodes.nodeTypes.Custom ? '<a class="btn btn-xs btn-info" href="' + txHashLink + '" class="strong" target="_blank" rel="noopener">Verify Transaction</a>' : '';
+                //var checkTxBtn = '<a class="btn btn-xs btn-info" href="' + checkTxLink + '" target="_blank" rel="noopener"> Check TX Status </a>';
                 var emailBtn = '<a class="btn btn-xs btn-info " href="mailto:support@myetherwallet.com?Subject=Issue%20regarding%20my%20TX%20&Body=' + emailBody + '" target="_blank" rel="noopener">Confused? Email Us.</a>';
-                var completeMsg = '<p>' + globalFuncs.successMsgs[2] + '<strong>' + resp.data + '</strong></p><p>' + verifyTxBtn + ' ' + checkTxBtn + '</p>';
+                var completeMsg = '<p>' + globalFuncs.successMsgs[2] + '<strong>' + resp.data + '</strong></p>';
                 $scope.notifier.success(completeMsg, 0);
                 $scope.wallet.setBalance(applyScope);
                 if ($scope.tx.sendMode == 'token') $scope.wallet.tokenObjs[$scope.tokenTx.id].setBalance();

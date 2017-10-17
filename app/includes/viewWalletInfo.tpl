@@ -1,6 +1,6 @@
 <main class="tab-pane active" ng-if="globalService.currentTab==globalService.tabs.viewWalletInfo.id" ng-controller='viewWalletCtrl' ng-cloak>
 
-  <article class="collapse-container">
+<!--  <article class="collapse-container">
 
     <div ng-click="wd = !wd">
       <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a>
@@ -14,13 +14,25 @@
       <wallet-decrypt-drtv></wallet-decrypt-drtv>
     </div>
 
-  </article>
+  </article>-->
 
-  <article class="row" ng-show="wallet!=null">
+  <article class="row">
 
     @@if (site === 'cx' ) {  @@include( './viewWalletInfo-content.tpl', { "site": "cx" } )    }
     @@if (site === 'mew') {  @@include( './viewWalletInfo-content.tpl', { "site": "mew" } )   }
 
+  </article>
+
+  <article>
+
+    @@if (site === 'mew' ) { @@include( '../includes/transaction-modal.tpl', { "site": "mew" } ) }
+    @@if (site === 'cx'  ) { @@include( '../includes/transaction-modal.tpl', { "site": "cx"  } ) }
+
+  </article>
+
+  <article>
+    @@if (site === 'mew' ) { @@include( '../includes/confirm-modal.tpl', { "site": "mew" } ) }
+    @@if (site === 'cx'  ) { @@include( '../includes/confirm-modal.tpl', { "site": "cx"  } ) }
   </article>
 
 </main>

@@ -1,9 +1,9 @@
-<section class="pre-footer">
+<!--<section class="pre-footer">
   <div class="container">
     <p>MyEtherWallet.com does not hold your keys for you. We cannot access accounts, recover keys, reset passwords, nor reverse transactions. Protect your keys &amp; always check that you are on correct URL. <a role="link" tabindex="0" data-toggle="modal" data-target="#disclaimerModal"> You are responsible for your security.</a>
     </p>
   </div>
-</section>
+</section>-->
 
 <footer class="footer" role="content" aria-label="footer" ng-controller='footerCtrl' >
 
@@ -28,7 +28,7 @@
     </section>
 
     <section class="footer--cent">
-        <h5> <i aria-hidden="true">ğŸ‘«</i> You can support us by supporting our blockchain-family.</h5>
+        <h5> <i aria-hidden="true">í ½í±«</i> You can support us by supporting our blockchain-family.</h5>
         <p>Consider using our affiliate links to...</p>
         <div class="footer__pill-wrap">
           <a class="footer__pill"  aria-label="Swap Ether or Bitcoin via Bity.com" href="https://bity.com/af/jshkb37v" target="_blank" rel="noopener">Swap ETH/BTC/EUR/CHF via Bity.com</a>
@@ -41,13 +41,13 @@
           <a class="footer__pill" href="https://ether.cards/?utm_source=mew&utm_medium=cpm&utm_campaign=site" target="_blank" rel="noopener">ether.card</a>
         </div>
 
-        <h5><i aria-hidden="true">ğŸ’</i> Donations are always appreciated!</h5>
+        <h5><i aria-hidden="true">í ½í²</i> Donations are always appreciated!</h5>
         <p>ETH: <span class="mono wrap">mewtopia.eth <a title="See this address on the blockchain explorer" href="https://etherscan.io/address/0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8" class="ext-etheraddresslookup-link" target="_blank">0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8</a></span></p>
         <p>BTC: <span class="mono wrap">1MEWT2SGbqtz6mPCgFcnea8XmWV5Z4Wc6</span></p>
         <!--
         <p>MYD: <span class="mono wrap">mewsupport.eth <small>0xf7e983781609012307f2514f63D526D83D24F466</small></span></p>
         -->
-        <h5 ng-hide="curLang=='en'"> <i>ğŸ…</i> <span translate="Translator_Desc"> Thank you to our translators </span></h5>
+        <h5 ng-hide="curLang=='en'"> <i>í ¼í¿…</i> <span translate="Translator_Desc"> Thank you to our translators </span></h5>
         <p ng-hide="curLang=='en'">
           <span translate="TranslatorName_1"></span>
           <span translate="TranslatorName_2"></span>

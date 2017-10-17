@@ -14,7 +14,7 @@
   <lastmod>2017-07-02T14:16:52+00:00</lastmod>
   <priority>0.9</priority>
 </url>
-<url>
+<!--<url>
   <loc>https://www.myetherwallet.com/#swap</loc>
   <lastmod>2017-07-02T14:16:52+00:00</lastmod>
   <priority>0.9</priority>
@@ -23,17 +23,42 @@
   <loc>https://www.myetherwallet.com/#offline-transaction</loc>
   <lastmod>2017-07-02T14:16:52+00:00</lastmod>
   <priority>0.9</priority>
-</url>
-<url>
-  <loc>https://www.myetherwallet.com/#contracts</loc>
-  <lastmod>2017-07-02T14:16:52+00:00</lastmod>
-  <priority>0.9</priority>
-</url>
-<url>
+</url>-->
+  <url>
+    <loc>https://www.myetherwallet.com/#cache-contract-address</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.myetherwallet.com/#deploy-contract</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.myetherwallet.com/#execute-with-contract</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.myetherwallet.com/#confirm-with-contract</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.myetherwallet.com/#revoke-with-contract</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.myetherwallet.com/#query-opid</loc>
+    <lastmod>2017-07-02T14:16:52+00:00</lastmod>
+    <priority>0.9</priority>
+  </url>
+<!--<url>
   <loc>https://www.myetherwallet.com/#ens</loc>
   <lastmod>2017-07-02T14:16:52+00:00</lastmod>
   <priority>0.9</priority>
-</url>
+</url>-->
 <url>
   <loc>https://www.myetherwallet.com/#check-tx-status</loc>
   <lastmod>2017-07-02T14:16:52+00:00</lastmod>

@@ -118,6 +118,71 @@ customNode.prototype.getTraceCall = function(txobj, callback) {
         else callback({ error: false, msg: '', data: data.result });
     });
 }
+
+customNode.prototype.queryOpId = function(param, callback) {
+    this.ethCallPost({
+        method: 'eth_getTransactionReceipt',
+        params: [param]
+    }, function(data) {
+        if (data.error){
+            callback({ error: true, msg: data.msg, data: '' });
+        }
+        else{
+            //解析data
+            var datas=null;
+            var result = null;
+            if(data.result==null){
+                result = null;
+            }else{
+                result = data.result.logs[0].data;
+                datas=[];
+                if(result.substring(0,2)=='0x'){
+                    result=result.substring(2);
+                }
+                while(result!=''&&result!=null){
+                    if(result.length>=64){
+                        datas.push(result.substring(0,64));
+                        result=result.substring(64);
+                    }else{
+                        datas.push(result);
+                        result='';
+                    }
+                }
+            }
+            callback({ error: false, msg: '', data:datas });
+        }
+    });
+}
+
+customNode.prototype.ethCall = function(param, callback) {
+    this.ethCallPost({
+        method: 'eth_call',
+        params: [param, 'latest']
+    }, function(data) {
+        if (data.error){
+            callback({ error: true, msg: data.msg, data: '' });
+        }
+        else{
+            //解析data
+            var result = data.result;
+            var datas=[];
+            if(result.substring(0,2)=='0x'){
+                result=result.substring(2);
+            }
+            while(result!=''&&result!=null){
+                if(result.length>=64){
+                    datas.push(result.substring(0,64));
+                    result=result.substring(64);
+                }else{
+                    datas.push(result);
+                    result='';
+                }
+            }
+            callback({ error: false, msg: '', data:datas });
+        }
+    });
+}
+
 customNode.prototype.rawPost = function(data, callback) {
     ajaxReq.http.post(this.SERVERURL, JSON.stringify(data), this.config).then(function(data) {
         callback(data.data);
@@ -132,5 +197,17 @@ customNode.prototype.post = function(data, callback) {
     data.id = this.getRandomID();
     data.jsonrpc = "2.0";
     this.rawPost(data, callback);
+}
+
+customNode.prototype.ethCallPost = function(data, callback) {
+    data.id = this.getRandomID();
+    data.jsonrpc = "2.0";
+    //console.log("ethcall发送数据："+JSON.stringify(data));
+    ajaxReq.http.post(this.SERVERURL, JSON.stringify(data), this.config).then(function(data) {
+        //console.log("ethcall返回数据："+JSON.stringify(data));
+        callback(data.data);
+    }, function(data) {
+        callback({ error: true, msg: "connection error", data: "" });
+    });
 }
 module.exports = customNode;

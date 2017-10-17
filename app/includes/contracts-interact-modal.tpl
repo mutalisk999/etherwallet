@@ -9,12 +9,13 @@
 
           <h2 class="modal-title text-danger" translate="SENDModal_Title">Warning!</h2>
 
-          <p>You are about to <strong>execute a function on contract</strong> on the <strong>{{ajaxReq.type}}</strong> chain.</p>
+          <!--<p>You are about to <strong>execute a function on contract</strong> on the <strong>{{ajaxReq.type}}</strong> chain.</p>-->
+          <p>您将要在<strong>{{ajaxReq.type}}</strong>链上执行合约的一个方法.</p>
+<!--          <p> The <strong>{{ajaxReq.type}}</strong> node you are sending through is provided by <strong>{{ajaxReq.service}}</strong>.</p>-->
+          <p> 发送信息的<strong>{{ajaxReq.type}}</strong>节点由<strong>{{ajaxReq.service}}</strong>提供.</p>
 
-          <p> The <strong>{{ajaxReq.type}}</strong> node you are sending through is provided by <strong>{{ajaxReq.service}}</strong>.</p>
-
-          <label translate="SEND_amount"> Amount <em>In most cases you should leave this as 0.</em> </label>
-          <input class="form-control" type="text" placeholder="0" ng-model="tx.value" ng-class="Validator.isPositiveNumber(tx.value) ? 'is-valid' : 'is-invalid'"/>
+          <label translate="SEND_amount" ng-show="false"> Amount <em>In most cases you should leave this as 0.</em> </label>
+          <input class="form-control" type="text" placeholder="0" ng-show="false" ng-model="tx.value" ng-class="Validator.isPositiveNumber(tx.value) ? 'is-valid' : 'is-invalid'"/>
 
           <label translate="TRANS_gas"> Gas </label>
           <input class="form-control" type="text" placeholder="300000" ng-model="tx.gasLimit" ng-class="Validator.isPositiveNumber(tx.gasLimit) ? 'is-valid' : 'is-invalid'"/>

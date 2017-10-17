@@ -3,7 +3,7 @@
   <!-- Byte Code -->
   <div class="form-group">
     <h4 translate="CONTRACT_ByteCode"> Byte Code: </h4>
-    <textarea
+    <textarea readonly
       class="form-control"
       rows="8"
       ng-model="tx.data"
@@ -18,6 +18,23 @@
            placeholder="300000"
            ng-model="tx.gasLimit"
            ng-class="Validator.isPositiveNumber(tx.gasLimit) ? 'is-valid' : 'is-invalid'"/>
+  </div>
+
+  <div class="form-group">
+    <h4> 所有者: </h4>
+    <input class="form-control"
+           type="text"
+           placeholder="多个以,(英文逗号)分隔,例：0xe8ae759033522e241a10935dc9b99e5687af9e90,0xe42e3609d4e6d4db8d79d4c8518670335a86f3fb"
+           ng-model="tx.owners"
+           ng-class="Validator.isValidAddressArray(tx.owners) ? 'is-valid' : 'is-invalid'"/>
+  </div>
+
+  <div class="form-group">
+    <h4>最小签名者数: </h4>
+    <input class="form-control"
+           type="number"
+           ng-model="tx.required"
+           ng-class="Validator.isPositiveNumber(tx.required) ? 'is-valid' : 'is-invalid'"/>
   </div>
 
   <!-- Sign TX Button (once wallet has been unlocked) -->

@@ -5,17 +5,20 @@
     <article class="row">
       <section class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
         <h1 translate="NAV_CheckTxStatus"> Check TX Status </h1>
-        <p translate="tx_Summary"></p>
+<!--        <p translate="tx_Summary"></p>-->
       </section>
 
       <section class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
+        <div class="form-group">
+          <h4 class="text-left"> ‰»ÎΩª“◊id:</h4>
           <input
-             class="form-control"
-             type="text"
-             placeholder="0x3f0efedfe0a0cd611f2465fac9a3699f92d6a06613bc3ead4f786856f5c73e9c"
-             ng-model="txInfo.hash"
-             ng-keyup="$event.keyCode == 13 && checkTxStatus()"
-             aria-label="{{'x_TxHash' | translate}}" ng-class="Validator.isValidTxHash(txInfo.hash) ? 'is-valid' : 'is-invalid'"/>
+                  class="form-control"
+                  type="text"
+                  placeholder="0x3f0efedfe0a0cd611f2465fac9a3699f92d6a06613bc3ead4f786856f5c73e9c"
+                  ng-model="txInfo.hash"
+                  ng-keyup="$event.keyCode == 13 && checkTxStatus()"
+                  aria-label="{{'x_TxHash' | translate}}" ng-class="Validator.isValidTxHash(txInfo.hash) ? 'is-valid' : 'is-invalid'"/>
+        </div>
           <button tabindex="0"
                   role="button"
                   class="btn btn-primary"
@@ -62,77 +65,62 @@
     <div ng-show="txInfo.status == txStatus.found || txInfo.status == txStatus.mined">
     <h4 translate="tx_Details" class="cont-md">Transaction Details</h4>
     <br />
-    <table class="table table-striped txstatus__2 cont-md"> <!-- ng-show="tx.status=='foundOnChain' || foundInPending'"-->
-      <tbody>
+      <table class="table table-striped txstatus__2 cont-md" style="table-layout:fixed;"> <!-- ng-show="tx.status=='foundOnChain' || foundInPending'"-->
+        <tbody>
         <tr>
-          <td translate="x_TxHash">TX Hash</td>
-          <td><a href="https://etherscan.io/tx/{{ txInfo.hash }}" target="_blank" rel="noopener"> {{ txInfo.hash }} </a></td>
+          <td style="width:20%" translate="x_TxHash">TX Hash</td>
+          <td style="word-wrap:break-word;width:80%"><a href="https://etherscan.io/tx/{{ txInfo.hash }}" target="_blank" rel="noopener"> {{ txInfo.hash }} </a></td>
         </tr>
         <tr>
-          <td translate="OFFLINE_Step1_Label_1">From Address</td>
-          <td><a href="https://etherscan.io/address/{{ txInfo.from }}" target="_blank" rel="noopener"> {{ txInfo.from }} </a></td>
+          <td style="width:20%" translate="OFFLINE_Step1_Label_1">From Address</td>
+          <td style="word-wrap:break-word;width:80%"><a href="https://etherscan.io/address/{{ txInfo.from }}" target="_blank" rel="noopener"> {{ txInfo.from }} </a></td>
         </tr>
         <tr>
-          <td translate="OFFLINE_Step2_Label_1">To Address</td>
-          <td><a href="https://etherscan.io/address/{{ txInfo.to }}" target="_blank" rel="noopener"> {{ txInfo.to }} </a></td>
+          <td style="width:20%" translate="OFFLINE_Step2_Label_1">To Address</td>
+          <td style="word-wrap:break-word;width:80%"><a href="https://etherscan.io/address/{{ txInfo.to }}" target="_blank" rel="noopener"> {{ txInfo.to }} </a></td>
         </tr>
         <tr>
-          <td translate="SEND_amount_short">Amount</td>
-          <td>{{ txInfo.valueStr }} </td>
+          <td style="width:20%" translate="SEND_amount_short">Amount</td>
+          <td style="word-wrap:break-word;width:80%">{{ txInfo.valueStr }} </td>
         </tr>
         <tr>
-          <td>
+          <td style="width:20%">
             <a class="account-help-icon" href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-is-nonce" target="_blank" rel="noopener">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="NONCE_Desc"></p>
             </a>
             <span translate="OFFLINE_Step2_Label_5">Nonce</span>
           </td>
-          <td>{{ txInfo.nonce }} </td>
+          <td style="word-wrap:break-word;width:80%">{{ txInfo.nonce }} </td>
         </tr>
         <tr>
-          <td>
+          <td style="width:20%">
             <a class="account-help-icon" href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-is-gas" target="_blank" rel="noopener">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="GAS_LIMIT_Desc"></p>
             </a>
             <span translate="OFFLINE_Step2_Label_4">Gas Limit</span>
           </td>
-          <td>{{ txInfo.gasLimit }} </td>
+          <td style="word-wrap:break-word;width:80%">{{ txInfo.gasLimit }} </td>
         </tr>
         <tr>
-          <td>
+          <td style="width:20%">
             <a class="account-help-icon" href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-is-gas" target="_blank" rel="noopener">
               <img src="images/icon-help.svg" class="help-icon" />
               <p class="account-help-text" translate="GAS_PRICE_Desc"></p>
             </a>
             <span translate="OFFLINE_Step2_Label_3">Gas Price</span>
-          </td>
-          <td>
+          </td >
+          <td style="word-wrap:break-word;width:80%">
             {{ txInfo.gasPrice.gwei }} GWEI
             <small>({{ txInfo.gasPrice.wei }} WEI)</small></td>
         </tr>
-<!--
         <tr>
-          <td>
-            <a class="account-help-icon" href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-is-gas" target="_blank" rel="noopener">
-              <img src="images/icon-help.svg" class="help-icon" />
-              <p class="account-help-text" translate="TXFEE_Desc"></p>
-            </a>
-            <span translate="x_TXFee">TX Fee</span>
-          </td>
-          <td>
-            ({{ txFee.eth }} ETH)
-            <small>({{ txFee.usd }} USD)</small>
-          </td>
+          <td style="width:20%" translate="OFFLINE_Step2_Label_6">Data</td>
+          <td style="word-wrap:break-word;width:80%">{{ txInfo.data }} </td>
         </tr>
--->
-        <tr>
-          <td translate="OFFLINE_Step2_Label_6">Data</td>
-          <td>{{ txInfo.data }} </td>
-        </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
 </div>
   </section>
   <!-- / Section 2: Current State -->
@@ -169,3 +157,4 @@
         <h5>Please unlock the address {{ txInfo.from }}. Only this address can replace a TX.</h5>
       </div>
     </section>
+</main>

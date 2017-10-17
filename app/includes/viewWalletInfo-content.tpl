@@ -1,75 +1,142 @@
-<article class="col-sm-8 view-wallet-content">
 
-  <section class="block">
-    <div class="col-xs-11">
+<article class="col-sm-12">
+<article class="col-sm-12 view-wallet-content block">
+
+  <section class="col-sm-12">
       <div class="account-help-icon">
         <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_AddessDesc">You may know this as your "Account #" or your "Public Key". It's what you send people so they can send you ETH. That icon is an easy way to recognize your address.</p>
-        <h5 translate="x_Address">Your Address:</h5>
+        <h5>查询多签钱包合约信息</h5>
       </div>
-      <input class="form-control" type="text" ng-value="wallet.getChecksumAddressString()" readonly="readonly">
-    </div>
+  </section>
 
-    <div class="col-xs-1 address-identicon-container">
-      <div class="addressIdenticon" title="Address Indenticon" blockie-address="{{wallet.getAddressString()}}" watch-var="wallet"></div>
-    </div>
-
-    <div class="col-xs-12" ng-show='showEnc'>
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_KeystoreDesc">This Keystore / JSON file matches the format used by Mist & Geth so you can easily import it in the future. It is the recommended file to download and back up.</p>
-        <h5 translate="x_Keystore">Keystore/JSON File (Recommended • Encrypted • Mist/Geth Format)</h5>
-      </div>
-      <a class="btn btn-info btn-block" href="{{blobEnc}}" download="{{encFileName}}" translate="x_Download"> DOWNLOAD </a>
-    </div>
-
-    <div class="col-xs-12" ng-show="wallet.type=='default'">
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_PrivKeyDesc">This is the unencrypted text version of your private key, meaning no password is necessary. If someone were to find your unencrypted private key, they could access your wallet without a password. For this reason, encrypted versions are typically recommended.</p>
-        <h5>
-          <span translate="x_PrivKey">Private Key (unencrypted)</span>
-        </h5>
-      </div>
-      <div class="input-group">
-        <input class="form-control no-animate" type="{{pkeyVisible ? 'text' : 'password'}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly">
-        <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
-      </div>
-    </div>
-
-
-    <div class="col-xs-12" ng-show="wallet.type=='default'">
-      <div class="account-help-icon">
-        <img src="images/icon-help.svg" class="help-icon" />
-        <p class="account-help-text" translate="x_PrintDesc">ProTip: Click print and save this as a PDF, even if you do not own a printer!</p>
-        <h5 translate="x_Print">Print Paper Wallet:</h5>
-      </div>
-      <a class="btn btn-info btn-block" ng-click="printQRCode()" translate="x_Print">Print Paper Wallet</a>
+  <section class="col-sm-12">
+  <section class="col-sm-6 clearfix">
+    <div class="row">
+      <address-field labeltranslated="CONTRACT_Title" var-name="contract.address"></address-field>
     </div>
   </section>
 
-  <section class="block">
-    <div class="col-xs-6">
-      <h5 translate="x_Address">Your Address:</h5>
-      <div class="qr-code" qr-code="{{wallet.getChecksumAddressString()}}" watch-var="wallet" width="100%"></div>
+  <!-- Select Contract Dropdown -->
+  <section class="col-sm-5 clearfix" ng-show="showSelected">
+    <label> 选择多签钱包合约地址 </label>
+    <div class="dropdown">
+      <a class="btn btn-default dropdown-toggle" class="dropdown-toggle" ng-click="dropdownExistingContracts = !dropdownExistingContracts">
+        <small class="mono">{{selectedAddress}}</small><i class="caret"></i>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-left" ng-show="dropdownExistingContracts">
+        <li ng-repeat="contract in contractList track by $index"><a ng-click="selectExistingAbi($index)"><small class="mono">{{contract.contractName}}:{{contract.contractAddress}}</small></a></li>
+      </ul>
     </div>
-    <div class="col-xs-6">
-      <h5 ng-show="wallet.type=='default'">
-        <span translate="x_PrivKey">Private Key (unencrypted)</span>
-      </h5>
-      <div class="qr-pkey-container" ng-show="wallet.type=='default'">
-        <div class="qr-overlay" ng-show="!pkeyVisible"></div>
-        <div class="qr-code" qr-code="{{wallet.getPrivateKeyString()}}" watch-var="wallet" width="100%"></div>
-        <div class="input-group">
-          <input class="form-control no-animate" type="{{pkeyVisible ? 'text' : 'password'}}" ng-value="wallet.getPrivateKeyString()" readonly="readonly" style="display:none;width:0;height:0;padding:0">
-          <span tabindex="0" aria-label="make private key visible" role="button" class="input-group-addon eye" ng-click="showHidePkey()"></span>
-        </div>
-      </div>
-    </div>
+  </section>
+  <section class="col-sm-1 clearfix" style="bottom:-20px;">
+    <button tabindex="0"
+            role="button"
+            class="btn btn-primary"
+            ng-click="queryContract()">查询</button>
+  </section>
+  </section>
+
+  <section class="col-sm-12" ng-show="contractInfoShow">
+    <article class="row">
+      <section class="col-xs-6 col-sm-3">
+        <label style="visibility:hidden">0</label>
+        <div>多签钱包合约地址</div>
+      </section>
+
+      <section class="col-xs-6 col-sm-9">
+        <label style="visibility:hidden">0</label>
+        <div >{{addressDrtv.ensAddressField}}</div>
+      </section>
+    </article>
+
+    <article class="row">
+      <section class="col-xs-6 col-sm-3">
+        <label style="visibility:hidden">0</label>
+        <div>最小签名数</div>
+      </section>
+
+      <section class="col-xs-6 col-sm-9">
+        <label style="visibility:hidden">0</label>
+        <div >{{required}}</div>
+      </section>
+    </article>
+
+    <article class="row">
+      <section class="col-xs-6 col-sm-3">
+        <label style="visibility:hidden">0</label>
+        <div>合约余额</div>
+      </section>
+
+      <section class="col-xs-6 col-sm-9">
+        <label style="visibility:hidden">0</label>
+        <div >{{contractBalance}}</div>
+      </section>
+    </article>
+
+      <article class="row">
+        <section class="col-xs-6 col-sm-3">
+          <label style="visibility:hidden">0</label>
+          <div>所有者地址</div>
+        </section>
+
+        <section class="col-xs-6 col-sm-9">
+          <label style="visibility:hidden">0</label>
+          <div ng-repeat="ownerAddress in ownerAddresses">{{ownerAddress}}</div>
+        </section>
+    </article>
   </section>
 
 </article>
 
-<article class="col-sm-4">
+  <article class="col-sm-12 view-wallet-content block">
+    <section class="col-sm-12">
+      <div class="account-help-icon">
+        <img src="images/icon-help.svg" class="help-icon" />
+        <h5>查询多签钱包合约交易信息</h5>
+      </div>
+    </section>
+    <section class="col-sm-12 tx-table">
+      <table style="width:100%;">
+        <thead style="width:100%;">
+        <tr style="width:100%;">
+          <th style="width:20%;">
+            交易时间
+          </th>
+          <th style="width:60%;">
+            交易id
+          </th>
+          <th style="width:10%;">
+            交易金额
+          </th>
+          <th style="width:10%;">
+            操作
+          </th>
+        </tr>
+        </thead>
+        <tbody style="width:100%;">
+        <tr ng-repeat="transaction in list">
+          <td>{{transaction.txTime}}</td>
+          <td>{{transaction.txId}}</td>
+          <td>{{transaction.txAmount}}&nbsp;{{transaction.fromChain}}</td>
+          <td><a ng-click="queryTransaction($index)">详情</a>&nbsp;&nbsp;&nbsp;<a ng-click="delTransaction(transaction.txId)">删除</a></td>
+        </tr>
+        </tbody>
+      </table>
+      <ul class="pagination" style="margin: 0px;" >
+        <li><a  ng-class="{true:'disabled'}[p_current==1]" href="javascript:void(0);" ng-click="p_index()">首页</a></li>
+        <li><a  ng-class="{true:'disabled'}[p_current==1]" href="javascript:void(0);" ng-click="pre_step()">上一页</a></li>
+        <li ng-repeat="page in pages"><a ng-class="{true:'selected',false:'unselected'}[p_current==page]" href="javascript:void(0);" ng-click="load_page(page)">
+          {{ page }}</a></li>
+        <li><a ng-class="{true:'disabled'}[p_current==p_all_page]" href="javascript:void(0);" ng-click="next_step()">下一页</a></li>
+        <li><a ng-class="{true:'disabled'}[p_current==p_all_page]" href="javascript:void(0);" ng-click="p_last()">尾页</a></li>
+      </ul>
+      <span style="vertical-align: 12px;"> &nbsp;&nbsp;共：{{count}} 条</span>
+    </section>
+  </article>
+
+</article>
+
+
+<!--<article class="col-sm-4">
   <wallet-balance-drtv></wallet-balance-drtv>
-</article>
+</article>-->

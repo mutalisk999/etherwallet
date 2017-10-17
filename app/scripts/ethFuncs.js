@@ -22,6 +22,25 @@ ethFuncs.sanitizeHex = function(hex) {
     if (hex == "") return "";
     return '0x' + this.padLeftEven(hex);
 }
+ethFuncs.sanitizeHex64 = function(hex) {
+    hex = hex.substring(0, 2) == '0x' ? hex.substring(2) : hex;
+    if (hex == "") return "";
+    var a = this.padLeftEven(hex);
+    var length = 64-a.length;
+    for(var i=0;i<length;i++){
+        a = '0'+a;
+    }
+    return a;
+}
+ethFuncs.sanitizeLength = function(hex) {
+    hex = hex.substring(0, 2) == '0x' ? hex.substring(2) : hex;
+    if (hex == "") return "";
+    var length = 64-hex.length;
+    for(var i=0;i<length;i++){
+        hex = '0'+hex;
+    }
+    return hex;
+}
 ethFuncs.trimHexZero = function(hex) {
     if (hex == "0x00" || hex == "0x0") return "0x0";
     hex = this.sanitizeHex(hex);
@@ -97,4 +116,5 @@ ethFuncs.estimateGas = function(dataObj, callback) {
         }
     });
 }
+
 module.exports = ethFuncs;

@@ -197,6 +197,7 @@ uiFuncs.generateTx = function(txData, callback) {
                 } else {
                     data = data.data;
                     data.isOffline = txData.isOffline ? txData.isOffline : false;
+                    //console.log("nonce3:"+JSON.stringify(data));
                     genTxWithInfo(data);
                 }
             });
@@ -211,7 +212,7 @@ uiFuncs.generateTx = function(txData, callback) {
 uiFuncs.sendTx = function(signedTx, callback) {
   // check for web3 late signed tx
     if (signedTx.slice(0,2) !== '0x') {
-      var txParams = JSON.parse(signedTx)
+      var txParams = JSON.parse(signedTx);
       window.web3.eth.sendTransaction(txParams, function(err, txHash){
         if (err) {
           return callback({
@@ -261,6 +262,195 @@ uiFuncs.transferAllBalance = function(fromAdd, gasLimit, callback) {
         });
     }
 }
+
+uiFuncs.getOpIds = function(param, callback) {
+    param.from="0xe8ae759033522e241a10935dc9b99e5687af9e90";
+    param.data="0x07a090cd";
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.queryOpId = function(param, callback) {
+    ajaxReq.queryOpId(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.confirmedOwners = function(param, callback) {
+    if(param.from==null){
+        param.from="0xe8ae759033522e241a10935dc9b99e5687af9e90";
+    }
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.getOwners = function(param, callback) {
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.contractOwners = function(param, callback) {
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.getRequired = function(param, callback) {
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.getConfirmedAllDone = function(param, callback) {
+    if(param.from==null){
+        param.from="0xe8ae759033522e241a10935dc9b99e5687af9e90";
+    }
+    ajaxReq.ethCall(param, function(data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+    });
+}
+
+uiFuncs.queryBalance = function(param, callback) {
+    ajaxReq.getBalance(param, function (data) {
+        var resp = {};
+        if (data.error) {
+            resp = {
+                isError: true,
+                error: data.msg
+            };
+        } else {
+            resp = {
+                isError: false,
+                data: data.data
+            };
+        }
+        if (callback !== undefined) callback(resp);
+
+        /*if (data.error) {
+            $scope[varWal][id].balance = data.msg;
+        } else {
+            $scope[varWal][id].balance = etherUnits.toEther(data.data.balance, 'wei');
+            $scope[varWal][id].balanceR = new BigNumber($scope[varWal][id].balance).toPrecision(5);
+        }*/
+    });
+}
+
+uiFuncs.getCurrentTime=function(){
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var hour = date.getHours();
+    if (hour >= 0 && hour <= 9) {
+        hour = "0" + hour;
+    }
+    var min = date.getMinutes();
+    if (min >= 0 && min <= 9) {
+        min = "0" + min;
+    }
+    var sec = date.getSeconds();
+    if (sec >= 0 && sec <= 9) {
+        sec = "0" + sec;
+    }
+    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+        + " " + hour + seperator2 + min+ seperator2 + sec;
+    return currentdate;
+}
+
 uiFuncs.notifier = {
     alerts: {},
     warning: function(msg, duration = 5000) {

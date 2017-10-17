@@ -83,6 +83,11 @@ NAV_SignMsg                 : 'Sign Message ',
 NAV_Swap                    : 'Swap ',
 NAV_ViewWallet              : 'View Wallet Info ',
 NAV_YourWallets             : 'Your Wallets ',
+NAV_CacheContractAddress   : 'Cache Contract Address',
+NAV_ExecuteWithContract:'Execute With Contract',
+NAV_ConfirmWithContract:'Confirm With Contract',
+NAV_RevokeWithContract:'Revoke With Contract',
+NAV_QueryOpid:'Query Opid',
 
 /* General */
 x_Access                    : 'Access ',
@@ -381,6 +386,10 @@ ERROR_34                    : 'The name you are attempting to reveal does not ma
 ERROR_35                    : 'Input address is not checksummed. <a href="https://myetherwallet.groovehq.com/knowledge_base/topics/not-checksummed-shows-when-i-enter-an-address" target="_blank" rel="noopener"> More info</a>', // 35
 ERROR_36                    : 'Enter valid TX hash', // 36
 ERROR_37                    : 'Enter valid hex string (0-9, a-f)', // 37
+ERROR_38                    : 'Please enter a valid required', // 38
+ERROR_39                    : 'Please enter a valid owners', // 39
+ERROR_40                    : 'Please enter a valid TransactionId', // 39
+ERROR_41                    : 'Contract balance is not enough', // 39
 
 SUCCESS_1                   : 'Valid address ',
 SUCCESS_2                   : 'Wallet successfully decrypted ',

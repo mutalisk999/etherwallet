@@ -61,6 +61,20 @@
 }
 
 .block__main {
+   .block();
+   text-align: left;
+   padding: @space-md;
+   flex-basis: 98%;
+   margin: @space @cont-padding/2;
+   @media screen and (min-width: @screen-sm) {
+     flex-basis: 68%;
+   }
+   @media screen and (min-width: @screen-md) {
+     flex-basis: 73%;
+   }
+ }
+
+.block__main2 {
   .block();
   text-align: left;
   padding: @space-md;
@@ -69,14 +83,46 @@
   @media screen and (min-width: @screen-sm) {
     flex-basis: 68%;
   }
-  @media screen and (min-width: @screen-md) {
-    flex-basis: 73%;
-  }
 }
 
 .block__help {
   .block();
   background-image: url(../images/icon-help-2.svg);
+  background-size: 8rem;
+  background-position: 102% -5%;
+  background-repeat: no-repeat;
+  text-align: left;
+  margin: @space @cont-padding;
+  flex-basis: 98%;
+  @media screen and (min-width: @screen-sm) {
+    flex-basis: 28%;
+  }
+  @media screen and (min-width: @screen-md) {
+    flex-basis: 23%;
+  }
+  a {
+    color: #ff5722;
+  }
+  a:hover {
+    color: darken(#ff5722,5%);
+  }
+  > *:first-child {
+    margin-top: 0;
+  }
+  ul {
+    list-style: circle;
+  }
+  ul,ol {
+    padding-left: @space;
+  }
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 400;
+  }
+}
+
+.block__right {
+  .block();
   background-size: 8rem;
   background-position: 102% -5%;
   background-repeat: no-repeat;
@@ -364,3 +410,54 @@ a.footer__pill {
 .send-modal__addr {
   font-size: 12px;
 }
+
+.tx-table table thead tr th,.tx-table table tbody tr td{
+  text-align: center;
+}
+
+.tx-table table {
+  border: 1px solid #ced2dd;
+  overflow-x: auto;
+}
+
+.tx-table table tr > td:not(:first-child),.tx-table table tr > th:not(:first-child) {
+  border-left: 1px solid #ced2dd;
+}
+
+.tx-table table tr > td{
+  border-top: 1px solid #ced2dd;
+}
+
+.tx-table table tr > td,.tx-table table tr > th {
+  padding:10px 0;
+}
+
+.pagination li{
+   float:left;
+  list-style:none;
+  margin-left:20px;
+}
+.selected{
+  background-color: #0e97c0;
+  color:#FFFFFF;
+}
+
+.unselected{
+  background-color: #FFFFFF;
+/*  color:#0e97c0;*/
+}
+
+.opid-ul li{
+  list-style:none;
+  margin-left: 0;
+}
+.opid-ul{
+  padding:0;
+}
+
+.disabled{
+color: 	#696969;
+}
+
+
+

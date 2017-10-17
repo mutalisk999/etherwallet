@@ -7,9 +7,9 @@
 
         <h2 class="modal-title text-danger" translate="SENDModal_Title">Warning!</h2>
 
-        <p>You are about to <strong>deploy a contract</strong> on the <strong>{{ajaxReq.type}}</strong> chain.</p>
+        <p>您将要在<strong>{{ajaxReq.type}}</strong>链上执行合约的一个方法.</p>
 
-        <p> The <strong>{{ajaxReq.type}}</strong> node you are sending through is provided by <strong>{{ajaxReq.service}}</strong>.</p>
+        <p> 发送信息的<strong>{{ajaxReq.type}}</strong>节点由<strong>{{ajaxReq.service}}</strong>提供.</p>
 
         <h4 translate="SENDModal_Content_3"> Are you sure you want to do this? </h4>
       </div>

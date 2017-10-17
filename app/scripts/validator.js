@@ -7,6 +7,20 @@ validator.isValidAddress = function(address) {
         return ethFuncs.validateEtherAddress(address);
     return false;
 }
+
+validator.isValidAddressArray = function(addresses) {
+    if (addresses === 'undefined' || addresses == null || addresses==''){
+        return false;
+    }
+    var addressArray = addresses.split(",");
+    for(var i=0;i<addressArray.length;i++){
+        if(!ethFuncs.validateEtherAddress(addressArray[i])){
+            return false;
+        }
+    }
+    return true;
+}
+
 validator.isChecksumAddress = function(address) {
     return ethFuncs.isChecksumAddress(address);
 }
@@ -72,5 +86,13 @@ validator.isValidURL = function(str) {
         '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
         '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
     return pattern.test(str);
+}
+
+validator.isNotEmpty = function(data) {
+    if(data==null || data==''||data.length==0){
+        return false;
+    }else{
+        return true;
+    }
 }
 module.exports = validator;

@@ -68,4 +68,23 @@ bity.post = function(path, data, callback) {
         callback({ error: true, msg: "connection error", data: "" });
     });
 }
+
+bity.prototype.addContract = function(data, callback) {
+    /*var _this = this;
+    ajaxReq.http.post("http://www.mayakui.com/wallet-test/addList", null,
+        {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+        ).then(function(data) {
+        callback(data);
+    }, function(data) {
+        callback({ error: true, msg: "connection error", data: "" });
+    });*/
+
+    var _this = this;
+    //console.log("参数1："+JSON.stringify(data));
+    ajaxReq.http.post("http://localhost:9002/wallet-test/addContract",JSON.stringify(data), bity.postConfig).then(function(data) {
+        callback(data.data);
+    }, function(data) {
+        callback({ error: true, msg: "connection error", data: "" });
+    });
+}
 module.exports = bity;

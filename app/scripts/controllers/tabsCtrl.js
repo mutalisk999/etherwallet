@@ -65,8 +65,8 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
         globalFuncs.localStorage.setItem('curNode', JSON.stringify({
             key: key
         }));
-        if (nodes.ensNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = false;
-        else $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = true;
+       // if (nodes.ensNodeTypes.indexOf($scope.curNode.type) == -1) $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = false;
+       // else $scope.tabNames.ens.cx = $scope.tabNames.ens.mew = true;
         ajaxReq.getCurrentBlock(function(data) {
             if (data.error) {
                 $scope.nodeIsConnected = false;
@@ -238,7 +238,7 @@ var tabsCtrl = function($scope, globalService, $translate, $sce) {
     }
     $scope.setLanguageFromStorage = function() {
         var lang = globalFuncs.localStorage.getItem('language', null);
-        if (lang == null) lang = "{\"key\":\"en\",\"value\":\"English\"}";
+        if (lang == null) lang = "{\"key\":\"zhcn\",\"value\":\"简体中文\"}";
         lang = JSON.parse(lang);
         var key = globalFuncs.stripTags(lang.key);
         var value = globalFuncs.stripTags(lang.value);

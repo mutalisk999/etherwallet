@@ -9,9 +9,20 @@
 
     @@include( '../includes/sendTx.tpl',             { "site": "mew" } )
 
-    @@include( '../includes/offlineTx.tpl',          { "site": "mew" } )
+   <!-- @@include( '../includes/swap.tpl',               { "site": "mew" } )
 
-    @@include( '../includes/contracts.tpl',          { "site": "mew" } )
+    @@include( '../includes/offlineTx.tpl',          { "site": "mew" } )-->
+    @@include( '../includes/cacheContractAddress.tpl',          { "site": "mew" } )
+
+<!--    @@include( '../includes/contracts.tpl',          { "site": "mew" } )-->
+
+    @@include( '../includes/deployContract.tpl',     { "site": "mew" })
+    @@include( '../includes/executeWithContract.tpl',         { "site": "mew" } )
+    @@include( '../includes/confirmWithContract.tpl',         { "site": "mew" } )
+    @@include( '../includes/revokeWithContract.tpl',          { "site": "mew" } )
+    @@include( '../includes/queryOpid.tpl',           { "site": "mew" } )
+
+ <!--   @@include( '../includes/ens.tpl',                { "site": "mew" } )-->
 
     @@include( '../includes/viewWalletInfo.tpl',     { "site": "mew" } )
 

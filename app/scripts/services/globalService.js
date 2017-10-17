@@ -34,7 +34,7 @@ var tabs = {
     mew: true,
     cx: true
   },
-  swap: {
+  /*swap: {
     id: 4,
     name: "NAV_Swap",
     url: "swap",
@@ -47,49 +47,78 @@ var tabs = {
     url:"offline-transaction",
     mew: true,
     cx: false
-  },
-  contracts: {
-    id: 6,
-    name: "NAV_Contracts",
-    url: "contracts",
+  },*/
+    cacheContractAddress: {
+    id: 4,
+    name: "NAV_CacheContractAddress",
+    url:"cache-contract-address",
+    mew: true,
+    cx: false
+ },
+    deployContract: {
+    id: 5,
+    name: "NAV_DeployContract",
+    url: "deploy-contract",
     mew: true,
     cx: true
   },
-  ens: {
-    id:7,
-    name: "NAV_ENS",
-    url: "ens",
-    mew: true,
-    cx: true
+    executeWithContract: {
+        id: 6,
+        name: "NAV_ExecuteWithContract",
+        url: "execute-with-contract",
+        mew: true,
+        cx: true
   },
+    confirmWithContract: {
+        id: 7,
+        name: "NAV_ConfirmWithContract",
+        url: "confirm-with-contract",
+        mew: true,
+        cx: true
+    },
+    revokeWithContract: {
+        id: 8,
+        name: "NAV_RevokeWithContract",
+        url: "revoke-with-contract",
+        mew: true,
+        cx: true
+    },
+    queryOpid: {
+        id: 9,
+        name: "NAV_QueryOpid",
+        url: "query-opid",
+        mew: true,
+        cx: true
+    },
   txStatus: {
-    id: 8,
+    id: 10,
     name: "NAV_CheckTxStatus",
     url: "check-tx-status",
     mew: true,
     cx: true
   },
   viewWalletInfo: {
-    id: 9,
+    id: 11,
     name: "NAV_ViewWallet",
     url: "view-wallet-info",
     mew: true,
     cx: false
   },
   signMsg: {
-    id: 10,
+    id: 12,
     name: "NAV_SignMsg",
     url: "sign-message",
     mew: false,
     cx: false
   },
   bulkGenerate: {
-    id: 11,
+    id: 13,
     name: "NAV_BulkGenerate",
     url: "bulk-generate",
     mew: false,
     cx: false
   }
+
 };
 var currentTab = 0;
 if(typeof chrome != 'undefined')

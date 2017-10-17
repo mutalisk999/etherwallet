@@ -1,6 +1,6 @@
 'use strict';
 var decryptWalletCtrl = function($scope, $sce, walletService) {
-    $scope.walletType = "";
+    $scope.walletType = "fileupload";
     $scope.requireFPass = $scope.requirePPass = $scope.showFDecrypt = $scope.showPDecrypt = $scope.showAOnly = $scope.showParityDecrypt = false;
     $scope.filePassword = "";
     $scope.fileContent = "";
@@ -35,6 +35,7 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
     $scope.$watch('walletType', function() {
         $scope.setdPath();
     });
+
     $scope.setdPath = function() {
         if ($scope.walletType == "ledger") {
             switch ($scope.nodeType) {
@@ -106,7 +107,9 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
                   $scope.HDWallet.dPath = $scope.HDWallet.defaultDPath;
             }
         }
-    }
+    };
+    $scope.setdPath();
+
     $scope.onHDDPathChange = function(password = $scope.mnemonicPassword) {
         $scope.HDWallet.numWallets = 0;
         if ($scope.walletType == 'pastemnemonic') {
@@ -125,11 +128,14 @@ var decryptWalletCtrl = function($scope, $sce, walletService) {
         $scope.onHDDPathChange();
     }
     $scope.showContent = function($fileContent) {
-        $scope.notifier.info(globalFuncs.successMsgs[4] + document.getElementById('fselector').files[0].name);
+        $scope.fileName=document.getElementById('fselector').files[0].name;
+        $scope.notifier.info(globalFuncs.successMsgs[4] + $scope.fileName);
+        $scope.showFileName=true;
         try {
             $scope.requireFPass = Wallet.walletRequirePass($fileContent);
             $scope.showFDecrypt = !$scope.requireFPass;
             $scope.fileContent = $fileContent;
+            $scope.filePassword=null;
         } catch (e) {
             $scope.notifier.danger(e);
         }

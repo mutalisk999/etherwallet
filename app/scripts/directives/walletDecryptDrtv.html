@@ -1,57 +1,13 @@
 <article class="block decrypt-drtv clearfix" ng-controller='decryptWalletCtrl as $crtl'>
 
   <!-- Column 1 - Select Type of Key -->
-  <section class="col-md-4 col-sm-6">
-    <h4 translate="decrypt_Access" style="margin-top:0;"> Select the format of your private key: </h4>
+  <section class="col-md-4 col-sm-6" ng-show="false">
 
-    <label class="radio">
-      <input aria-flowto="aria3" type="radio" aria-label="MetaMask / Mist" ng-model="walletType" value="metamask" />
-      <span translate="x_MetaMask">MetaMask / Mist</span>
-    </label>
-
-    <label class="radio" ng-show="ajaxReq.type=='ETH'||ajaxReq.type=='ETC'||ajaxReq.type=='ROPSTEN ETH'||ajaxReq.type=='RINKEBY ETH'||ajaxReq.type=='KOVAN ETH'||ajaxReq.type=='EXP'||ajaxReq.type=='UBQ'">
-      <input aria-flowto="aria2" type="radio" aria-label="Ledger Wallet hardware wallet" ng-model="walletType" value="ledger"/>
-      <span>Ledger Wallet</span>
-    </label>
-
-    <label class="radio" ng-show="ajaxReq.type=='ETH'||ajaxReq.type=='ETC'||ajaxReq.type=='ROPSTEN ETH'||ajaxReq.type=='RINKEBY ETH'||ajaxReq.type=='KOVAN ETH'||ajaxReq.type=='EXP'||ajaxReq.type=='UBQ'">
-      <input aria-flowto="aria6" type="radio" aria-label="Trezor hardware wallet" ng-model="walletType" value="trezor"/>
-      TREZOR
-    </label>
-
-    <label class="radio" ng-show="ajaxReq.type=='ETH'||ajaxReq.type=='ETC'||ajaxReq.type=='ROPSTEN ETH'||ajaxReq.type=='RINKEBY ETH'||ajaxReq.type=='KOVAN ETH'||ajaxReq.type=='EXP'">
-      <input aria-flowto="aria7" type="radio" aria-label="Digital Bitbox hardware wallet" ng-model="walletType" value="digitalBitbox"/>
-      Digital Bitbox
-    </label>
-
-    <label class="radio" style="display: none;" id="showMeTheMoney">
-      <input aria-flowto="aria8" aria-label="parity phrase" type="radio" ng-model="walletType" value="parityBWallet" />
-      <span translate="x_ParityPhrase">Parity Phrase</span>
-    </label>
-
-    <label class="radio">
-      <input aria-flowto="aria1" aria-label="Keystore JSON file" type="radio" ng-model="walletType" value="fileupload" />
+    <label class="radio" ng-show="false">
+      <input aria-flowto="aria1" aria-label="Keystore JSON file" type="radio" ng-model="walletType" value="fileupload"/>
       <span translate="x_Keystore2">Keystore / JSON File</span>
     </label>
 
-    <label class="radio">
-      <input aria-flowto="aria4" aria-label="mnemonic phrase" type="radio" ng-model="walletType" value="pastemnemonic" />
-      <span translate="x_Mnemonic">Mnemonic Phrase</span>
-    </label>
-
-    <label class="radio">
-      <input aria-flowto="aria5" aria-label="private key" type="radio" ng-model="walletType" value="pasteprivkey" />
-      <span translate="x_PrivKey2">Private Key</span>
-    </label>
-
-    <label aria-flowto="aria7" class="radio" ng-hide="globalService.currentTab!==globalService.tabs.viewWalletInfo.id">
-      <input aria-flowto="aria8" aria-label="address" type="radio" ng-model="walletType" value="addressOnly" />
-      View with Address Only
-    </label>
-
-    <label aria-flowto="aria9" class="radio">
-      &nbsp;<span translate="x_ParityPhrase">Parity Phrase</span>: <a href="https://myetherwallet.groovehq.com/knowledge_base/topics/parity-phrases-no-longer-supported" target="_blank" rel="noopener">No longer supported</a>
-    </label>
 
   </section>
   <!-- Column 1 - Select Type of Key -->
@@ -70,6 +26,10 @@
            id="aria1"
            tabindex="0"
            role="button">SELECT WALLET FILE... </a>
+      </div>
+      <div class="form-group" ng-show="showFileName">
+        <h4>已选择的钱包文件:</h4>
+        <p>{{fileName}}</p>
       </div>
       <div class="form-group" ng-if="requireFPass">
         <p translate="ADD_Label_3"> Your file is encrypted. Please enter the password: </p>
@@ -172,7 +132,7 @@
                  ng-keyup="$event.keyCode == 13 && decryptWallet()"
                  ng-model="$parent.$parent.mnemonicPassword"
                  placeholder="{{ 'x_Password' | translate }}"
-                 type="password" / >
+                 type="password" />
         </div>
       </div>
     </div>

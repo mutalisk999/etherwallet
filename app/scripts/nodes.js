@@ -35,11 +35,13 @@ nodes.nodeList = {
         'blockExplorerAddr': 'https://etherscan.io/address/[[address]]',
         'type': nodes.nodeTypes.ETH,
         'eip155': true,
-        'chainId': 1,
+        //'chainId': 1,
+        'chainId': 15,
         'tokenList': require('./tokens/ethTokens.json'),
         'abiList': require('./abiDefinitions/ethAbi.json'),
         'service': 'MyEtherWallet',
-        'lib': new nodes.customNode('https://api.myetherapi.com/eth', '')
+        //'lib': new nodes.customNode('https://api.myetherapi.com/eth', '')
+        'lib': new nodes.customNode('http://192.168.1.237:9004/wallet-test/ethcall', '')
     },
     'eth_ethscan': {
         'name': 'ETH',
@@ -65,17 +67,31 @@ nodes.nodeList = {
         'service': 'infura.io',
         'lib': new nodes.infuraNode('https://mainnet.infura.io/mew')
     },
+    /*'eth_localhost': {
+        'name': 'ETH',
+        'blockExplorerTX': 'https://etherscan.io/tx/[[txHash]]',
+        'blockExplorerAddr': 'https://etherscan.io/address/[[address]]',
+        'type': nodes.nodeTypes.ETH,
+        'eip155': true,
+        'chainId': 1,
+        'tokenList': require('./tokens/ethTokens.json'),
+        'abiList': require('./abiDefinitions/ethAbi.json'),
+        'service': 'Localhost',
+        'lib': new nodes.customNode('http://192.168.1.137:28000', '')
+    },*/
     'etc_epool': {
         'name': 'ETC',
         'blockExplorerTX': 'https://gastracker.io/tx/[[txHash]]',
         'blockExplorerAddr': 'https://gastracker.io/addr/[[address]]',
         'type': nodes.nodeTypes.ETC,
         'eip155': true,
-        'chainId': 61,
+        //'chainId': 61,
+        'chainId': 62,
         'tokenList': require('./tokens/etcTokens.json'),
         'abiList': require('./abiDefinitions/etcAbi.json'),
         'service': 'Epool.io',
-        'lib': new nodes.customNode('https://mewapi.epool.io', '')
+        //'lib': new nodes.customNode('https://mewapi.epool.io', '')
+        'lib': new nodes.customNode('http://192.168.1.237:9004/wallet-test/ethcall2', '')
     },
     'rop_mew': {
         'name': 'Ropsten',

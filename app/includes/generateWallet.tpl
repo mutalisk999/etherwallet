@@ -5,7 +5,7 @@
     <section class="block__main gen__1--inner">
       <br />
       <h1 translate="NAV_GenerateWallet" aria-live="polite"> Create New Wallet</h1>
-      <h4 translate="GEN_Label_1"> Enter password </h4>
+      <h4 translate="GEN_Label_1"> Enter a password </h4>
       <div class="input-group">
         <input name="password"
              class="form-control"
@@ -17,8 +17,8 @@
         <span tabindex="0" aria-label="make password visible" role="button" class="input-group-addon eye" ng-click="showPass=!showPass"></span>
       </div>
       <a tabindex="0" role="button" class="btn btn-primary" func="generateSingleWallet" ng-click="genNewWallet()" translate="NAV_GenerateWallet">Generate Wallet</a>
-      <p translate="x_PasswordDesc"> </p>
-      <div class="text-center">
+      <p>此密码加密您的私钥。这不作为种子生成你的钥匙。您将需要这个密码和您的私钥解锁您的钱包。</p>
+      <!--<div class="text-center">
         <strong>
           <a href="https://myetherwallet.groovehq.com/knowledge_base/topics/how-do-i-create-a-new-wallet" target="_blank" rel="noopener" translate="GEN_Help_5">
           How to Create a Wallet</a>
@@ -26,7 +26,7 @@
           <a href="https://myetherwallet.groovehq.com/knowledge_base/categories/getting-started-443" target="_blank" rel="noopener" translate="GEN_Help_6">
           Getting Started</a>
         </strong>
-      </div>
+      </div>-->
       <br>
     </section>
 
@@ -92,9 +92,9 @@
       </a>
 
       <div class="warn">
-        <p><strong>Do not lose it!</strong> It cannot be recovered if you lose it.</p>
-        <p><strong>Do not share it!</strong> Your funds will be stolen if you use this file on a malicious/phishing site.</p>
-        <p><strong>Make a backup!</strong> Secure it like the millions of dollars it may one day be worth.</p>
+        <p><strong>请勿丢失!</strong> 丢失无法恢复。</p>
+        <p><strong>请勿透露给其他人!</strong>如果您在恶意/钓鱼网站上使用此文件，您的资金将被窃取。</p>
+        <p><strong>务必备份!</strong> 安全就像数以百万计的美元，它可能有一天是值得的。</p>
       </div>
 
       <p>
@@ -119,7 +119,7 @@
       <h2 translate="GEN_Help_4">Guides &amp; FAQ</h2>
       <ul>
         <li><a href="https://myetherwallet.groovehq.com/knowledge_base/topics/how-do-i-save-slash-backup-my-wallet" target="_blank" rel="noopener"><strong translate="GEN_Help_13">How to Back Up Your Keystore File</strong></a></li>
-        <li><a href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-are-the-different-formats-of-a-private-key" target="_blank" rel="noopener"><strong translate="GEN_Help_14">What are these Different Formats?</a></strong></li>
+        <li><a href="https://myetherwallet.groovehq.com/knowledge_base/topics/what-are-the-different-formats-of-a-private-key" target="_blank" rel="noopener"><strong translate="GEN_Help_14">What are these Different Formats?</strong></a></li>
       </ul>
 
     </section>
@@ -143,19 +143,19 @@
 
       <br />
 
-      <a tabindex="0" aria-label="{{'x_Print'|translate}}" aria-describedby="x_PrintDesc" role="button" class="btn btn-primary" ng-click="printQRCode()" translate="x_Print">PRINT</a>
-
+      <!--<a tabindex="0" aria-label="{{'x_Print'|translate}}" aria-describedby="x_PrintDesc" role="button" class="btn btn-primary" ng-click="printQRCode()" translate="x_Print">PRINT</a>
+-->
       <div class="warn">
-        <p><strong>Do not lose it!</strong> It cannot be recovered if you lose it.</p>
-        <p><strong>Do not share it!</strong> Your funds will be stolen if you use this file on a malicious/phishing site.</p>
-        <p><strong>Make a backup!</strong> Secure it like the millions of dollars it may one day be worth.</p>
+        <p><strong>请勿丢失!</strong> 丢失无法恢复。</p>
+        <p><strong>请勿透露给其他人!</strong>如果您在恶意/钓鱼网站上使用此文件，您的资金将被窃取。</p>
+        <p><strong>务必备份!</strong> 安全就像数以百万计的美元，它可能有一天是值得的。</p>
       </div>
 
       <br />
 
-      <a class="btn btn-default btn-sm" ng-click="getAddress()">
+      <!--<a class="btn btn-default btn-sm" ng-click="getAddress()">
         <span translate="GEN_Label_3"> Save your Address </span> →
-      </a>
+      </a>-->
 
     </section>
 
@@ -192,7 +192,7 @@
     <div class="clearfix collapse-container">
       <div ng-click="wd = !wd">
         <a class="collapse-button"><span ng-show="wd">+</span><span ng-show="!wd">-</span></a>
-        <h1 traslate="GEN_Unlock">Unlock your wallet to see your address</h1>
+        <h1>解锁钱包查看地址</h1>
         <p translate="x_AddessDesc"></p>
       </div>
       <div ng-show="!wd">
@@ -201,10 +201,10 @@
       </div>
     </div>
 
-    <div class="row" ng-show="wallet!=null" ng-controller='viewWalletCtrl'>
+    <div class="row" ng-show="wallet!=null" ng-controller='viewWalletCtrl2'>
 
-      @@if (site === 'cx' ) {  @@include( './viewWalletInfo-content.tpl', { "site": "cx" } )    }
-      @@if (site === 'mew') {  @@include( './viewWalletInfo-content.tpl', { "site": "mew" } )   }
+      <!--@@if (site === 'cx' ) {  @@include( './viewWalletInfo-content.tpl', { "site": "cx" } )    }
+      @@if (site === 'mew') {  @@include( './viewWalletInfo-content.tpl', { "site": "mew" } )   }-->
 
     </div>
   </article>
