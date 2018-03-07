@@ -193,13 +193,13 @@ func saveContract(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	if !FromRightChain(new_contract.FromChain) {
+		w.Write([]byte("{\"code\":\"201\"}"))
+		return
+	}
+
 	for _, contract := range contract_list {
 		if new_contract.ContractAddress == contract.ContractAddress {
-			w.Write([]byte("{\"code\":\"201\"}"))
-			return
-		}
-
-		if !FromRightChain(new_contract.FromChain) {
 			w.Write([]byte("{\"code\":\"201\"}"))
 			return
 		}
@@ -313,13 +313,13 @@ func saveTransaction(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	if !FromRightChain(new_transaction.FromChain) {
+		w.Write([]byte("{\"code\":\"201\"}"))
+		return
+	}
+
 	for _, transaction := range transaction_list {
 		if new_transaction.TxId == transaction.TxId {
-			w.Write([]byte("{\"code\":\"201\"}"))
-			return
-		}
-
-		if !FromRightChain(new_transaction.FromChain) {
 			w.Write([]byte("{\"code\":\"201\"}"))
 			return
 		}
